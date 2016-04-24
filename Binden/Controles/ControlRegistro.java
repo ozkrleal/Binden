@@ -15,7 +15,7 @@ public class ControlRegistro {
 
    ///Valida al cliente en la base de datos
    public int validarUsuario(String correo, Connection con){
-      int ncuenta = usuario.validar(correo, con);
+      int ncuenta = usuario.validarCorreo(correo, con);
       return( ncuenta );
    }
 
