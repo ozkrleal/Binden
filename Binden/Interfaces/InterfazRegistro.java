@@ -34,17 +34,26 @@ public class InterfazRegistro extends HttpServlet {
       String ubicacion = request.getParameter("ubicacion");
   		String descripcion = request.getParameter("descripcion");
 
+      int nUsuario;
+
       ///La conexion se establecio en ContextListener
       Connection conn = (Connection) getServletContext().getAttribute("DBConnection");
 
   		ControlRegistro cRegistro = new ControlRegistro();
-  		cRegistro.agregarUsuario(correo, contra, tipoUsuario, nombre, descripcion, conn);
+      nUsuario = cRegistro.validar(correo, conn);
 
-			PrintWriter out = response.getWriter();
-		  out.println("<h3><font color=green>La cuenta ha sido creada!</font></h3>");
-      RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
-			rd.include(request, response); ///include() permite que el mensaje anterior se incluya en la pagina Web
-
+  		if( nUsuario != 0 ) { ///El correo ya existe
+  			PrintWriter out = response.getWriter();
+  		  out.println("<h3><font color=red>Ya existe este correo, porfavor utilice otro, o haga login!</font></h3>");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/nuevo.html");
+  			rd.include(request, response); ///include() permite que el mensaje anterior se incluya en la pagina Web
+  		}else{
+        cRegistro.agregarUsuario(correo, contra, tipoUsuario, nombre, descripcion, conn);
+        PrintWriter out = response.getWriter();
+        out.println("<h3><font color=green>Cuenta registrada!</font></h3>");
+        RequestDispatcher rd=request.getRequestDispatcher("/login.html");
+        rd.forward(request, response);
+  		}
 
   	}
 

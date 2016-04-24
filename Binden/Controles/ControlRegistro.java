@@ -12,4 +12,11 @@ public class ControlRegistro {
    public void agregarUsuario (String correo, String paswd, String tipoUsuario, String nombre, String descripcion, Connection con){
       usuario.agregar(correo, paswd, tipoUsuario, nombre, descripcion, con);
    }
+
+   ///Valida al cliente en la base de datos
+   public int validarUsuario(String correo, Connection con){
+      int ncuenta = usuario.validar(correo, con);
+      return( ncuenta );
+   }
+
 }
