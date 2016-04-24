@@ -47,8 +47,6 @@ public class MenuServlet extends HttpServlet {
             "<title>Binden</title> \n" +
             "<h2>Citas entre empresas y servicio social</h2> \n" +
             "<h3>Indica la operacion que deseas realizar</h3> </p>" +
-            "<a href=Extraer>Usuario Nuevo</a> </p>" +
-            "<a href=Extraer>Usuario Registrado</a> </p><br><br>" +
             "<a href=Extraer>Extraer efectivo</a> </p>" +
             "<a href=Consulta>Consultar saldo</a> </p>" +
             "<a href=Transferencia>Transferencia de saldo</a></p>" +
