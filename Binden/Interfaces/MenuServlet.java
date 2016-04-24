@@ -45,11 +45,11 @@ public class MenuServlet extends HttpServlet {
             "</head> \n" +
             "<body> \n" +
             "<title>Binden</title> \n" +
-            "<h2>Citas entre empresas y servicio social</h2> \n" +
+            "<h2>Citas para proyectos de servicio social y empresas</h2> \n" +
             "<h3>Indica la operacion que deseas realizar</h3> </p>" +
-            "<a href=Extraer>Extraer efectivo</a> </p>" +
-            "<a href=Consulta>Consultar saldo</a> </p>" +
-            "<a href=Transferencia>Transferencia de saldo</a></p>" +
+            "<a href=Conocer>Conocer gente</a> </p>" +
+            "<a href=Mensajes>Ver mensajes</a> </p>" +
+            "<a href=Agenda>Consultar agenda</a> </p>" +
             "</body>" +
             "</html>"
          );
