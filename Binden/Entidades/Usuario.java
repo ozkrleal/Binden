@@ -7,23 +7,24 @@ import java.sql.SQLException;
 
 public class Usuario {
    PreparedStatement stmt;
-   public int maxId(){
+   String correo,String contra,String tipo,String nombre,String descripcion, int idUsuario ;
 
-     String query = " SELECT MAX(column_name) FROM table_name";
-     stmt = con.prepareStatement(query);
-     ResultSet rs = stmt.executeQuery();
-     return rs+1;
-
+   public Usuario(String mail,String password,String type,String name,String desc, int id){
+     correo = mail;
+     tipo = type;
+     contra = password;
+     nombre = name;
+     descripcion = desc;
+     idUsuario = id;
 
    }
-
-   public void agregar(String correo,String contraseana,String tipo,String nombre,String descripcion, Connection con){
+   public void agregar(String correo,String contra,String tipo,String nombre,String descripcion, Connection con){
       try {
          String query = "INSERT INTO Usuario (nombre, tipoUsuario, contra, correo, descripcion) VALUES (?, ?, ?, ?, ?)";
          stmt = con.prepareStatement(query);
          stmt.setString(1, nombre);
          stmt.setString(2, tipo);
-         stmt.setInt(3, contraseana);
+         stmt.setString(3, contra);
          stmt.setString(4, correo);
          stmt.setString(5, descripcion);
          stmt.execute();
@@ -60,4 +61,25 @@ public class Usuario {
       return 0;
    }
 
+   public ArrayList<Usuario> obtenerUsuarios(String tipo, Connection con){
+     try {
+       ArrayList<Usuario> lista = new ArrayList<>;
+        String query = "SELECT nombre,idUsuario,correo,tipoUsuario,descripcion,contra FROM Usuario WHERE tipoUsuario = ? ";
+        stmt = con.prepareStatement(query);
+        stmt.setString(1, tipo);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+
+           lista.add(new Usuario(rs.getString("correo"),rs.getInt("contra"),
+           rs.getString("tipo"),rs.getString("nombre"),rs.getString("descripcion"),
+           rs.getInt("idUsuario") )   );
+        }
+         rs.close();
+         return( lista );
+
+     } catch (SQLException e) {}
+     return 0;
+
+   }
 }
