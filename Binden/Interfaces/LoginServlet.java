@@ -23,16 +23,16 @@ public class LoginServlet extends HttpServlet {
 
    ///Redirige cualquier GET recibido a POST
    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException { 
+        throws ServletException, IOException {
      doPost(request,response);
    }
-   
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException {
 
-		String user = request.getParameter("usuario");
-		String pwd = request.getParameter("clave");
-    
+		String user = request.getParameter("correo");
+		String pwd = request.getParameter("contra");
+
     ///La conexion se establecio en ContextListener
     Connection conn = (Connection) getServletContext().getAttribute("DBConnection");
 
@@ -53,8 +53,8 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("cuenta", sCuenta);
 			session.setAttribute("usuario", user);
 			session.setAttribute("password", pwd);
-      RequestDispatcher rd=request.getRequestDispatcher("Menu");  
-      rd.forward(request, response);        
+      RequestDispatcher rd=request.getRequestDispatcher("Menu");
+      rd.forward(request, response);
 		}
 
 	}
