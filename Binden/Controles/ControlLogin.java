@@ -1,21 +1,22 @@
 package controles;
 import java.sql.Connection;
-import entidades.Cliente;
+import entidades.Usuario;
 
 public class ControlLogin {
-   Cliente cliente;
+   Usuario usuario;
 
    public ControlLogin(){
-     cliente = new Cliente();
+     usuario = new Usuario();
    }
    
-   public void agregarCliente (String usuario, String paswd, int cuenta, String nombre, Connection con){
-      cliente.agregar(usuario, paswd, cuenta, nombre, con);
-   }
-    
+   //agregar va en control registro
+  //  public void agregarUsuario (String usuarioo, String paswd, int cuenta, String nombre, Connection con){
+  //     usuario.agregar(usuarioo, paswd, cuenta, nombre, con);
+  //  }
+
    ///Valida al cliente en la base de datos
-   public int validarCliente(String usuario, String password, Connection con){
-      int ncuenta = cliente.validar(usuario, password, con);
+   public int validarCliente(String usuarioo, String password, Connection con){
+      int ncuenta = usuario.validar(usuarioo, password, con);
       return( ncuenta );
    }
 
