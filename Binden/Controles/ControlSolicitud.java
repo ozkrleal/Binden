@@ -1,28 +1,32 @@
 package controles;
 import entidades.Usuario;
+import entidades.Solicitud;
 import java.sql.Connection;
 
 public class ControlSolicitud {
-  Usuario usuario;
+  Usuario usuario1, usuario2;
+  Solicitud solicitud;
 
    public ControlSolicitud(){
-      usuario = new Usuario();
+      usuario1 = new Usuario();
+      usuario2 = new Usuario();
+      solicitud = new Solicitud();
    }
 
-   public ArrayList<Usuario> obtenerUsuarios (String tipo, String con){
+   public ArrayList<Usuario> obtenerUsuarios (String tipo, Connection con){
      usuario.obtenerUsuarios(tipo, con);
    }
 
-   public void mandarSolicitud(){
-
+   public void mandarSolicitud(Usuario sender, Usuario receiver, Connection con){
+     solicitud.crearSolicitud(sender, receiver, con);
    }
 
-   public void aceptarSolicitud(){
-
+   public void aceptarSolicitud(Usuario receiver, Solicitud solic, Connection con){
+     solicitud.aceptarSolicitud(receiver, solic, con);
    }
 
-   public void ignorarSolicitud(){
-
+   public void ignorarSolicitud(Usuario receiver, Solicitud solic, Connection con){
+     solicitud.ignorarSolicitud(receiver, solic, con);
    }
 
 }
