@@ -30,13 +30,13 @@ public class InterfazSolicitud extends HttpServlet {
 
         HttpSession sesion = request.getSession(false);
 
-        String idCuenta = sesion.getAttribute("cuenta");
+        String idUsuario = sesion.getAttribute("cuenta");
 
         Connection conn = (Connection) getServletContext().getAttribute("DBConnection");
 
         ControlSolicitud cSolicitud = new ControlSolicitud();
 
-        ArrayList<Usuario> listUsuarios = cSolicitud.obtenerUsuarios();
+        ArrayList<Usuario> listUsuarios = cSolicitud.obtenerUsuarios(cSolicitud.obtenerTipoUsuario(idUsuario));
 
       if (sesion == null) { ///El usuario no esta logeado
 		     out.println("<font color=red>Favor de proporcionar primero usuario y clave.</font>");
@@ -53,11 +53,20 @@ public class InterfazSolicitud extends HttpServlet {
             "</head> \n" +
             "<body> \n" +
             "<title>Binden</title> \n" +
-            "<h2>Citas para proyectos de servicio social y empresas</h2> \n" +
-            "<h3>Indica la operacion que deseas realizar</h3> </p>" +
-            "<a href=Conocer>Conocer gente</a> </p>" +
-            "<a href=Solicitudes>Ver solicitudes</a> </p>" +
-            "<a href=Agenda>Consultar agenda</a> </p>" +
+            "<h2>Conectate con quien desees!</h2> \n");
+
+            for(Usuario user : listUsuarios){
+              out.println("Nombre: " + user.nombre + "\n" +
+                          "Correo: " + user.correo + "\n" +
+                          "Ubicacion: " + user.ubicacion + "\n" +
+                          "Descripcion: " + user.descripcion + "\n"
+                          );
+              //Este boton va a agregar la solicitud
+              out.println("<a href=Agregar/" + user.idUsuario + ">Agregar</a> </p>");
+              cSolicitud.crearSolicitud(idUsuario, user.idUsuario, conn);
+            }
+
+         out.println(
             "</body>" +
             "</html>"
          );
