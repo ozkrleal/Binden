@@ -17,7 +17,6 @@ import controles.ControlRegistro;
   }
 )
 public class InterfazRegistro extends HttpServlet {
-
      ///Redirige cualquier GET recibido a POST
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
@@ -56,5 +55,4 @@ public class InterfazRegistro extends HttpServlet {
   		}
 
   	}
-
   }

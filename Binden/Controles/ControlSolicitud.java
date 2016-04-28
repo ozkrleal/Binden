@@ -13,20 +13,20 @@ public class ControlSolicitud {
       solicitud = new Solicitud();
    }
 
-   public ArrayList<Usuario> obtenerUsuarios (String tipo, Connection con){
-     usuario.obtenerUsuarios(tipo, con);
+   public ArrayList<Usuario> obtenerUsuarios(String tipo, Connection con){
+     usuario1.obtenerUsuarios(tipo, con);
    }
 
-   public void mandarSolicitud(Usuario sender, Usuario receiver, Connection con){
-     solicitud.crearSolicitud(sender, receiver, con);
+   public String crearSolicitud(String sender, String receiver, Connection con){
+     return solicitud.mandarSolicitud(sender, receiver, con);
    }
 
-   public void aceptarSolicitud(Usuario receiver, Solicitud solic, Connection con){
-     solicitud.aceptarSolicitud(receiver, solic, con);
+   public void aceptarSolicitud(String solic, Connection con){
+     solicitud.aceptarSolicitud(solic, con);
    }
 
-   public void ignorarSolicitud(Usuario receiver, Solicitud solic, Connection con){
-     solicitud.ignorarSolicitud(receiver, solic, con);
+   public void ignorarSolicitud(String solic, Connection con){
+     solicitud.borrarSolicitud(solic, con);
    }
 
 }

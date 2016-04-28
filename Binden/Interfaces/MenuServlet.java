@@ -48,7 +48,7 @@ public class MenuServlet extends HttpServlet {
             "<h2>Citas para proyectos de servicio social y empresas</h2> \n" +
             "<h3>Indica la operacion que deseas realizar</h3> </p>" +
             "<a href=Conocer>Conocer gente</a> </p>" +
-            "<a href=Mensajes>Ver mensajes</a> </p>" +
+            "<a href=Solicitudes>Ver solicitudes</a> </p>" +
             "<a href=Agenda>Consultar agenda</a> </p>" +
             "</body>" +
             "</html>"
