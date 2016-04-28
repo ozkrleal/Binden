@@ -30,7 +30,6 @@ public class Usuario {
          stmt.execute();
       }catch (Exception e) { System.out.println ("No se pudo ejecutar agregar() a la tabla Cliente" + e ); }
    }
-
    public int validarCorreo(String correo, Connection con) {
       try {
          String query = "SELECT idUsuario FROM Usuario WHERE correo = ?";
@@ -60,7 +59,6 @@ public class Usuario {
       } catch (SQLException e) { System.out.println ("No se pudo ejecutar validar() a la tabla Usuario" + e );}
       return 0;
    }
-
    public ArrayList<Usuario> obtenerUsuarios(String tipo, Connection con){
      try {
        ArrayList<Usuario> lista = new ArrayList<>;
