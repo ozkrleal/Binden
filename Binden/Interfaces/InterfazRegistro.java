@@ -47,7 +47,7 @@ public class InterfazRegistro extends HttpServlet {
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/nuevo.html");
   			rd.include(request, response); ///include() permite que el mensaje anterior se incluya en la pagina Web
   		}else{
-        cRegistro.agregarUsuario(correo, contra, tipoUsuario, nombre, descripcion, conn);
+        cRegistro.agregarUsuario(correo, contra, tipoUsuario, nombre, ubicacion, descripcion, conn);
         PrintWriter out = response.getWriter();
         out.println("<h3><font color=green>Cuenta registrada!</font></h3>");
         RequestDispatcher rd=request.getRequestDispatcher("/login.html");

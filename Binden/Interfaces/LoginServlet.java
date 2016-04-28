@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
     Connection conn = (Connection) getServletContext().getAttribute("DBConnection");
 
 		ControlLogin cLogin = new ControlLogin();
-		int ncuenta = cLogin.validarCliente(user, pwd, conn);
+		int ncuenta = cLogin.validarUsuario(user, pwd, conn);
 
 		if( ncuenta == 0 ) { ///El usuario o clave son incorrectos
 			PrintWriter out = response.getWriter();

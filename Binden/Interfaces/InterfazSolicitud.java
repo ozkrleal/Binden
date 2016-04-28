@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 //Utilizando urlPatterns en lugar de urlPattern permite agregar mas parametros a la anotacion
-@WebServlet(urlPatterns = "/Menu",
+@WebServlet(urlPatterns = "/Conocer",
   initParams = {
-     @WebInitParam(name = "class", value = "interfaces.MenuServlet")
+     @WebInitParam(name = "class", value = "interfaces.InterfazSolicitud")
   }
 )
-public class MenuServlet extends HttpServlet {
+public class InterfazSolicitud extends HttpServlet {
 
    //Redirige cualquier GET recibido a POST
    protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,8 +28,16 @@ public class MenuServlet extends HttpServlet {
          throws ServletException, IOException {
       PrintWriter out = response.getWriter();
 
-      //Solo permitir acceso si existe una sesion
         HttpSession sesion = request.getSession(false);
+
+        String idCuenta = sesion.getAttribute("cuenta");
+
+        Connection conn = (Connection) getServletContext().getAttribute("DBConnection");
+
+        ControlSolicitud cSolicitud = new ControlSolicitud();
+
+        ArrayList<Usuario> listUsuarios = cSolicitud.obtenerUsuarios();
+
       if (sesion == null) { ///El usuario no esta logeado
 		     out.println("<font color=red>Favor de proporcionar primero usuario y clave.</font>");
          RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.html");
