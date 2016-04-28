@@ -7,26 +7,28 @@ import java.sql.SQLException;
 
 public class Usuario {
    PreparedStatement stmt;
-   String correo,String contra,String tipo,String nombre,String descripcion, int idUsuario ;
+   String correo,String contra,String tipo,String nombre,,String ubicacion,String descripcion, int idUsuario ;
 
-   public Usuario(String mail,String password,String type,String name,String desc, int id){
+   public Usuario(String mail,String password,String type,String name,String ubica,String desc, int id){
      correo = mail;
      tipo = type;
      contra = password;
      nombre = name;
      descripcion = desc;
      idUsuario = id;
+     ubicacion = ubica;
 
    }
-   public void agregar(String correo,String contra,String tipo,String nombre,String descripcion, Connection con){
+   public void agregar(String correo,String contra,String tipo,String nombre,String ubicacion,String descripcion, Connection con){
       try {
-         String query = "INSERT INTO Usuario (nombre, tipoUsuario, contra, correo, descripcion) VALUES (?, ?, ?, ?, ?)";
+         String query = "INSERT INTO Usuario (nombre, tipoUsuario, contra, correo, descripcion ,ubicacion) VALUES (?, ?, ?, ?, ?, ?)";
          stmt = con.prepareStatement(query);
          stmt.setString(1, nombre);
          stmt.setString(2, tipo);
          stmt.setString(3, contra);
          stmt.setString(4, correo);
          stmt.setString(5, descripcion);
+         stmt.setString(6, ubicacion);
          stmt.execute();
       }catch (Exception e) { System.out.println ("No se pudo ejecutar agregar() a la tabla Cliente" + e ); }
    }
