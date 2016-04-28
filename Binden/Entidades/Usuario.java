@@ -81,4 +81,19 @@ public class Usuario {
      return 0;
 
    }
+   public String obtenerTipoUsuario (String idUsuario){
+     try {
+        String query = "SELECT tipoUsuario FROM Usuario WHERE idUsuario = ?";
+        stmt = con.prepareStatement(query);
+        stmt.setString(1, idUsuario);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) { ///Va al primer registro si lo hay
+           String tipo = rs.getInt ("tipoUsuario");
+           rs.close();
+           return( tipo );
+        }
+     } catch (SQLException e) { System.out.println ("No se pudo ejecutar validarCorreo() a la tabla Usuario" + e );}
+     return 0;
+
+   }
 }
