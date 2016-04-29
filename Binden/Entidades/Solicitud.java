@@ -18,6 +18,7 @@ public class Solicitud {
      idUsuario = id;
 
    }
+
    public String mandarSolicitud(String usuario1,String usuario2, Connection con){
       try {
          String query = "INSERT INTO Solicitud (idUsuarioS1, idUsuarioS2) VALUES (?, ?)";
@@ -60,7 +61,7 @@ public class Solicitud {
       }catch (Exception e) { System.out.println ("No se pudo ejecutar agregar() a la tabla Cliente" + e ); }
    }
 
-   public ArrayList<Solicitud> obtenerUsuarios(String idUsuario2, Connection con){
+   public ArrayList<Solicitud> obtenerSolicitudes(String idUsuario2, Connection con){
      try {
        ArrayList<Solicitud> lista = new ArrayList<>;
         String query = "SELECT idSolicitud FROM solicitud WHERE idUsuario2 = ? ";
@@ -78,4 +79,5 @@ public class Solicitud {
      return 0;
 
    }
+
 }

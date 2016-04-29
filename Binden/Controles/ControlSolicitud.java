@@ -14,7 +14,11 @@ public class ControlSolicitud {
    }
 
    public ArrayList<Usuario> obtenerUsuarios(String tipo, Connection con){
-     usuario1.obtenerUsuarios(tipo, con);
+     return (usuario1.obtenerUsuarios(tipo, con));
+   }
+
+   public ArrayList<Solicitud> obtenerSolicitudes(String idUsuario, Connection con){
+      return (solicitud.obtenerSolicitudes(idUsuario, con));
    }
 
    public String crearSolicitud(String sender, String receiver, Connection con){
