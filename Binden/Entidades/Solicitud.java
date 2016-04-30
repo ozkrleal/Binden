@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.*;
 
 public class Solicitud {
    PreparedStatement stmt;
-   String idSolicitud,String usuario1,String usuario2;
+   String idSolicitud, usuario1, usuario2;
 
    public Solicitud(String sender, String receiver, String id){
       idSolicitud = id;
@@ -31,9 +32,9 @@ public class Solicitud {
          stmt.setString(2, usuario22);
          ResultSet rs = stmt.executeQuery();
          if (rs.next()) { ///Va al primer registro si lo hay
-            String idSol = rs.getInt ("idSolicitud");
+            int idSol = rs.getInt ("idSolicitud");
             rs.close();
-            return( idSol );
+          return Integer.toString(idSol);
          }
       }catch (Exception e) { System.out.println ("No se pudo ejecutar agregar() a la tabla Cliente" + e ); }
    }
@@ -59,14 +60,14 @@ public class Solicitud {
 
    public ArrayList<Solicitud> obtenerSolicitudes(String idUsuario2, Connection con){
      try {
-       ArrayList<Solicitud> lista = new ArrayList<>;
-        String query = "SELECT idSolicitud FROM solicitud WHERE idUsuario2 = ? ";
+       ArrayList<Solicitud> lista = new ArrayList<Solicitud>();
+        String query = "SELECT idSolicitud,idUsuario1,idUsuario2 FROM solicitud WHERE idUsuario2 = ? ";
         stmt = con.prepareStatement(query);
         stmt.setString(1, idUsuario2);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
 
-           lista.add(new Solicitud(rs.getString("idSolicitud")  ));
+           lista.add(new Solicitud(rs.getInt("idSolicitud"),rs.getInt("idUsuario1"),rs.getInt("idUsuario2")  ));
         }
          rs.close();
          return( lista );

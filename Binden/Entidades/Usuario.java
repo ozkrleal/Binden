@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Usuario {
    PreparedStatement stmt;
-   String correo,String contra,String tipo,String nombre,,String ubicacion,String descripcion, int idUsuario ;
+   String correo,String contra,String tipo,String nombre,String ubicacion,String descripcion, int idUsuario;
 
    public Usuario(String mail,String password,String type,String name,String ubica,String desc, int id){
      correo = mail;
