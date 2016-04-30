@@ -65,7 +65,6 @@ public class InterfazSolicitud extends HttpServlet {
                           );
               //Este boton va a agregar la solicitud
               out.println("<input type= 'submit' name='registrar' value='" + user.idUsuario + "'/>\n");
-              cSolicitud.crearSolicitud(idUsuario, user.idUsuario, conn);
             }
 
             Strict act = request.getParameter("registrar");

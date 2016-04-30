@@ -33,8 +33,8 @@ public class ControlSolicitud {
      solicitud.borrarSolicitud(solic, con);
    }
 
-   public String obtenerTipoUsuario(String usuario){
-     return usuario1.obtenerTipoUsuario(usuario);
+   public String obtenerTipoUsuario(String usuario, Connection con){
+     return usuario1.obtenerTipoUsuario(usuario, con);
    }
 
 }

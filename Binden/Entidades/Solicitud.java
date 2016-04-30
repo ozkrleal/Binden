@@ -9,14 +9,10 @@ public class Solicitud {
    PreparedStatement stmt;
    String idSolicitud,String usuario1,String usuario2;
 
-   public Solicitud(String usuario1 ,String usuario2,String id){
-     correo = mail;
-     tipo = type;
-     contra = password;
-     nombre = name;
-     descripcion = desc;
-     idUsuario = id;
-
+   public Solicitud(String sender, String receiver, String id){
+      idSolicitud = id;
+      usuario1 = sender;
+      usuario2 = receiver;
    }
 
    public String mandarSolicitud(String usuario1,String usuario2, Connection con){

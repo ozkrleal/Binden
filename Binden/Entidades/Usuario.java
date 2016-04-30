@@ -83,7 +83,7 @@ public class Usuario {
      return 0;
 
    }
-   public String obtenerTipoUsuario (String idUsuario){
+   public String obtenerTipoUsuario (String idUsuario, Connection con){
      try {
         String query = "SELECT tipoUsuario FROM Usuario WHERE idUsuario = ?";
         stmt = con.prepareStatement(query);

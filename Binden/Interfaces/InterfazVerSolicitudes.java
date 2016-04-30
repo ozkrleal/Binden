@@ -38,7 +38,7 @@ public class InterfazSolicitud extends HttpServlet {
 
         ControlSolicitud cSolicitud = new ControlSolicitud();
 
-        ArrayList<Usuario> listUsuarios = cSolicitud.obtenerUsuarios(cSolicitud.obtenerTipoUsuario(idUsuario));
+        ArrayList<Solicitud> listSolicitudes = cSolicitud.obtenerSolicitudes(idUsuario, conn);
 
       if (sesion == null) { ///El usuario no esta logeado
 		     out.println("<font color=red>Favor de proporcionar primero usuario y clave.</font>");
@@ -56,23 +56,23 @@ public class InterfazSolicitud extends HttpServlet {
             "<body> \n" +
             "<title>Binden</title> \n" +
             "<h2>Solicitudes pendientes:</h2> \n");
-            //
-            // for(Usuario user : listUsuarios){
-            //   out.println("Nombre: " + user.nombre + "\n" +
-            //               "Correo: " + user.correo + "\n" +
-            //               "Ubicacion: " + user.ubicacion + "\n" +
-            //               "Descripcion: " + user.descripcion + "\n"
-            //               );
-            //   //Este boton va a agregar la solicitud
-            //   out.println("<input type= 'submit' name='registrar' value='" + user.idUsuario + "'/>\n");
-            //   cSolicitud.crearSolicitud(idUsuario, user.idUsuario, conn);
-            // }
-            //
-            // Strict act = request.getParameter("registrar");
-            //
-            // if (act != null) {
-            //   cSolicitud.crearSolicitud(idUsuario, act, conn);
-            // }
+
+            for(Solicitud sol : listSolicitudes){
+              out.println("Nombre: " + user.nombre + "\n" +
+                          "Correo: " + user.correo + "\n" +
+                          "Ubicacion: " + user.ubicacion + "\n" +
+                          "Descripcion: " + user.descripcion + "\n"
+                          );
+              //Este boton va a agregar la solicitud
+              out.println("<input type= 'submit' name='registrar' value='" + user.idUsuario + "'/>\n");
+              cSolicitud.crearSolicitud(idUsuario, user.idUsuario, conn);
+            }
+
+            Strict act = request.getParameter("registrar");
+
+            if (act != null) {
+              cSolicitud.crearSolicitud(idUsuario, act, conn);
+            }
 
          out.println(
             "</body>" +
