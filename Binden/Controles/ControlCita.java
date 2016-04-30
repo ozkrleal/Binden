@@ -19,16 +19,17 @@ public class ControlCita {
      usuario.obtenerUsuarios(tipo, con);
    }
 
-   public void agendarCita(Usuario receiver, Usuario sender, Connection con){
-     cita.crearCita(sender, receiver, con);
+   public void agendarCita(String receiver, String sender, String fecha,
+        String descripcion, Connection con){
+     cita.crearCita(sender, receiver, fecha, descripcion, con);
    }
 
-   public void aceptarCita(Usuario receiver, Cita cit, Connection con){
+   public void aceptarCita(String receiver, String cit, Connection con){
      cita.aceptarCita(receiver, cit, con);
    }
 
-   public void cancelarCita(Usuario receiver, Cita cit, Connection con){
-     cita.ignorarCita(receiver, cit, con)
+   public void cancelarCita(String cit, Connection con){
+     cita.ignorarCita(cit, con)
    }
 
 }
