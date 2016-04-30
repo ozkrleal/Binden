@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Usuario {
    PreparedStatement stmt;
-   String correo,String contra,String tipo,String nombre,String ubicacion,String descripcion, int idUsuario;
+   String correo,String contra,String tipo,String nombre,,String ubicacion,String descripcion, int idUsuario ;
 
    public Usuario(String mail,String password,String type,String name,String ubica,String desc, int id){
      correo = mail;
@@ -19,6 +19,7 @@ public class Usuario {
      ubicacion = ubica;
 
    }
+
    public void agregar(String correo,String contra,String tipo,String nombre,String ubicacion,String descripcion, Connection con){
       try {
          String query = "INSERT INTO Usuario (nombre, tipoUsuario, contra, correo, descripcion ,ubicacion) VALUES (?, ?, ?, ?, ?, ?)";
@@ -32,6 +33,7 @@ public class Usuario {
          stmt.execute();
       }catch (Exception e) { System.out.println ("No se pudo ejecutar agregar() a la tabla Cliente" + e ); }
    }
+
    public int validarCorreo(String correo, Connection con) {
       try {
          String query = "SELECT idUsuario FROM Usuario WHERE correo = ?";
@@ -46,6 +48,7 @@ public class Usuario {
       } catch (SQLException e) { System.out.println ("No se pudo ejecutar validarCorreo() a la tabla Usuario" + e );}
       return 0;
    }
+
    public int validar(String correo, String contrasena,Connection con) {
       try {
          String query = "SELECT idUsuario FROM Usuario WHERE correo = ? AND contra = ?";
@@ -64,7 +67,7 @@ public class Usuario {
 
    public ArrayList<Usuario> obtenerUsuarios(String tipo, Connection con){
      try {
-       ArrayList<Usuario> lista = new ArrayList<Usuario>();
+       ArrayList<Usuario> lista = new ArrayList<>;
         String query = "SELECT nombre,idUsuario,correo,tipoUsuario,descripcion,contra FROM Usuario WHERE tipoUsuario = ? ";
         stmt = con.prepareStatement(query);
         stmt.setString(1, tipo);
@@ -84,6 +87,22 @@ public class Usuario {
 
    }
    public String obtenerTipoUsuario (String idUsuario, Connection con){
+     try {
+        String query = "SELECT tipoUsuario FROM Usuario WHERE idUsuario = ?";
+        stmt = con.prepareStatement(query);
+        stmt.setString(1, idUsuario);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) { ///Va al primer registro si lo hay
+           String tipo = rs.getInt ("tipoUsuario");
+           rs.close();
+           return( tipo );
+        }
+     } catch (SQLException e) { System.out.println ("No se pudo ejecutar validarCorreo() a la tabla Usuario" + e );}
+     return 0;
+
+   }
+
+   public Usuario obtenerUsuario (String idUsuario, Connection con){
      try {
         String query = "SELECT tipoUsuario FROM Usuario WHERE idUsuario = ?";
         stmt = con.prepareStatement(query);

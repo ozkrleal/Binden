@@ -58,23 +58,25 @@ public class InterfazVerSolicitud extends HttpServlet {
             "<h2>Solicitudes pendientes:</h2> \n");
 
             for(Solicitud sol : listSolicitudes){
-              out.println("Nombre: " + user.nombre + "\n" +
-                          "Correo: " + user.correo + "\n" +
-                          "Ubicacion: " + user.ubicacion + "\n" +
-                          "Descripcion: " + user.descripcion + "\n"
+              out.println("Nombre: " + sol.usuario1 + "\n"
                           );
               //Este boton va a agregar la solicitud
-              out.println("<input type= 'submit' name='registrar' value='" + user.idUsuario + "'/>\n");
-              cSolicitud.crearSolicitud(idUsuario, user.idUsuario, conn);
+              out.println("<input type= 'submit' name='aceptar' value='" + sol.idSolicitud + "'/>\n");
+              out.println("<input type= 'submit' name='rechazar' value='" + sol.idSolicitud + "'/>\n");
             }
 
-            Strict act = request.getParameter("registrar");
+            Strict aceptar = request.getParameter("aceptar");
+            Strict rechazar = request.getParameter("rechazar");
 
-            if (act != null) {
-              cSolicitud.crearSolicitud(idUsuario, act, conn);
+
+            if (aceptar != null) {
+              cSolicitud.aceptarSolicitud(idUsuario, sol.usuario2, conn);
+            } else if (rechazar != null){
+              cSolicitud.borrarSolicitud(idUsuario, sol.usuario2, conn);
             }
 
          out.println(
+            "<a href=Menu>Regresar</a> </p>" +
             "</body>" +
             "</html>"
          );

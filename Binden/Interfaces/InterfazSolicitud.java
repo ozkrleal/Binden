@@ -74,6 +74,7 @@ public class InterfazSolicitud extends HttpServlet {
             }
 
          out.println(
+            "<a href=Menu>Regresar</a> </p>" +
             "</body>" +
             "</html>"
          );
