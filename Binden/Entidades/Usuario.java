@@ -64,7 +64,7 @@ public class Usuario {
 
    public ArrayList<Usuario> obtenerUsuarios(String tipo, Connection con){
      try {
-       ArrayList<Usuario> lista = new ArrayList<>;
+       ArrayList<Usuario> lista = new ArrayList<Usuario>();
         String query = "SELECT nombre,idUsuario,correo,tipoUsuario,descripcion,contra FROM Usuario WHERE tipoUsuario = ? ";
         stmt = con.prepareStatement(query);
         stmt.setString(1, tipo);
