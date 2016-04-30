@@ -15,20 +15,20 @@ public class Solicitud {
       usuario2 = receiver;
    }
 
-   public String mandarSolicitud(String usuario1,String usuario2, Connection con){
+   public String mandarSolicitud(String usuario11,String usuario22, Connection con){
       try {
          String query = "INSERT INTO Solicitud (idUsuarioS1, idUsuarioS2) VALUES (?, ?)";
          stmt = con.prepareStatement(query);
-         stmt.setString(1, usuario1);
-         stmt.setString(2, usuario2);
+         stmt.setString(1, usuario11);
+         stmt.setString(2, usuario22);
          stmt.execute();
       }catch (Exception e) { System.out.println ("No se pudo ejecutar agregar() a la tabla Cliente" + e ); }
 
       try {
          String query = "SELECT idSolicitud FROM Solicitud WHERE idUsuario1 = ? AND idUsuario2 = ?";
          stmt = con.prepareStatement(query);
-         stmt.setString(1, usuario1);
-         stmt.setString(2, usuario2);
+         stmt.setString(1, usuario11);
+         stmt.setString(2, usuario22);
          ResultSet rs = stmt.executeQuery();
          if (rs.next()) { ///Va al primer registro si lo hay
             String idSol = rs.getInt ("idSolicitud");
@@ -38,7 +38,7 @@ public class Solicitud {
       }catch (Exception e) { System.out.println ("No se pudo ejecutar agregar() a la tabla Cliente" + e ); }
    }
 
-   public void borrarSolicitud(String idSolicitud Connection con){
+   public void borrarSolicitud(String idSolicitud, Connection con){
       try {
          String query = "DELETE FROM solicitud WHERE idSolicitud = ?";
          stmt = con.prepareStatement(query);

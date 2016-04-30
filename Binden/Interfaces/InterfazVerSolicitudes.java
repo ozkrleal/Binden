@@ -18,7 +18,7 @@ import controles.ControlSolicitud;
      @WebInitParam(name = "class", value = "interfaces.InterfazVerSolicitud")
   }
 )
-public class InterfazSolicitud extends HttpServlet {
+public class InterfazVerSolicitud extends HttpServlet {
 
    //Redirige cualquier GET recibido a POST
    protected void doGet(HttpServletRequest request, HttpServletResponse response)
